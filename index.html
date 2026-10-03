@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ELVÉ — Moda contemporánea. No es la ropa. Es cómo la llevas.">
+<title>ELVÉ — Moda contemporánea</title>
+<style>
+:root{
+  --black:#111111; --ivory:#f5f1e9; --bronze:#b08a5a; --stone:#77736d;
+  --white:#fff; --line:#ded9d0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ivory);color:var(--black);font-family:Arial,Helvetica,sans-serif}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+.nav{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(245,241,233,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(17,17,17,.08)}
+.nav-inner{height:76px;max-width:1280px;margin:auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:Georgia,serif;font-size:31px;letter-spacing:8px;font-weight:700}
+.nav-links{display:flex;gap:28px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
+.nav-actions{display:flex;gap:12px;align-items:center}
+.icon-btn{border:0;background:transparent;cursor:pointer;font-size:20px}
+.hero{min-height:100vh;padding-top:76px;display:grid;grid-template-columns:1.08fr .92fr}
+.hero-copy{display:flex;align-items:center;padding:8vw;position:relative;overflow:hidden}
+.hero-copy:after{content:"É";position:absolute;right:-50px;bottom:-150px;font:700 360px Georgia;color:rgba(176,138,90,.08)}
+.eyebrow{font-size:11px;letter-spacing:3px;color:var(--bronze);font-weight:700}
+h1{font:700 clamp(60px,9vw,125px)/.86 Georgia,serif;margin:24px 0}
+.hero p{max-width:500px;font:italic 21px/1.45 Georgia,serif;color:#383632}
+.cta{display:inline-block;margin-top:28px;padding:16px 25px;background:var(--black);color:#fff;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.hero-image{background:linear-gradient(135deg,#d6cec1,#a79c8e);min-height:650px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero-image:before{content:"ELVÉ";font:700 150px Georgia;color:rgba(255,255,255,.14);position:absolute;transform:rotate(-90deg);white-space:nowrap}
+.hero-image .frame{width:70%;height:75%;border:1px solid rgba(255,255,255,.6);display:flex;align-items:flex-end;padding:35px;color:#fff;position:relative}
+.hero-image .frame span{font-size:11px;letter-spacing:3px}
+.section{padding:100px 28px;max-width:1280px;margin:auto}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:42px}
+.kicker{font-size:10px;letter-spacing:3px;color:var(--bronze);font-weight:700}
+h2{font:700 48px Georgia,serif;margin:10px 0 0}
+.muted{color:var(--stone);font-size:14px;line-height:1.7}
+.collections{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.collection{height:570px;position:relative;overflow:hidden;background:#c9c0b4;display:flex;align-items:flex-end}
+.collection.woman{background:linear-gradient(150deg,#d8d0c6,#8f8478)}
+.collection.man{background:linear-gradient(150deg,#4d4a46,#aaa39b)}
+.collection .content{padding:35px;color:white;z-index:2}
+.collection h3{font:700 42px Georgia,serif;margin:8px 0}
+.collection:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.55))}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{cursor:pointer}
+.product-image{aspect-ratio:4/5;background:#d9d2c9;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.product-image:before{content:"ELVÉ";font:700 70px Georgia;color:rgba(17,17,17,.08);transform:rotate(-90deg)}
+.card:nth-child(2) .product-image{background:#c8c1b8}
+.card:nth-child(3) .product-image{background:#e3ddd4}
+.card:nth-child(4) .product-image{background:#9c958c}
+.product-info{padding:16px 2px}
+.product-info h4{margin:0 0 7px;font:normal 18px Georgia,serif}
+.product-info span{font-size:12px;color:var(--stone)}
+.price{margin-top:8px;font-size:12px;font-weight:700}
+.manifesto{background:var(--black);color:white;max-width:none;padding:120px 10vw;text-align:center}
+.manifesto .quote{font:italic 44px/1.25 Georgia,serif;max-width:900px;margin:28px auto}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-mark{font:700 230px Georgia;color:var(--bronze);text-align:center}
+.newsletter{background:#e8e1d7;padding:80px 28px;text-align:center}
+.form{max-width:520px;margin:25px auto;display:flex}
+.form input{flex:1;padding:16px;border:1px solid #bbb3a8;background:transparent}
+.form button{padding:16px 22px;background:var(--black);color:#fff;border:0;letter-spacing:1px}
+.footer{background:var(--black);color:#fff;padding:65px 28px}
+.footer-inner{max-width:1280px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.footer .logo{color:white}
+.footer small{color:#aaa}
+.cart{position:fixed;right:0;top:0;bottom:0;width:min(420px,92vw);background:#fff;z-index:50;transform:translateX(100%);transition:.3s;box-shadow:-20px 0 50px rgba(0,0,0,.15);padding:28px}
+.cart.open{transform:translateX(0)}
+.cart-head{display:flex;justify-content:space-between;align-items:center}
+.cart h3{font:normal 28px Georgia,serif}
+.cart-item{padding:20px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:40;display:none}
+.overlay.open{display:block}
+.cart-total{display:flex;justify-content:space-between;margin-top:25px;font-weight:700}
+.cart-checkout{width:100%;padding:16px;background:var(--black);color:white;border:0;margin-top:18px;cursor:pointer}
+@media(max-width:850px){
+ .nav-links{display:none}.hero{grid-template-columns:1fr}.hero-copy{min-height:72vh;padding:70px 28px}.hero-image{min-height:55vh}
+ .collections,.about-grid{grid-template-columns:1fr}.products{grid-template-columns:1fr 1fr}.section{padding:75px 20px}
+ .section-head{display:block}.footer-inner{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){.products{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr}.logo{font-size:25px}}
+</style>
+</head>
+<body>
+<nav class="nav">
+ <div class="nav-inner">
+  <a class="logo" href="#">ELVÉ</a>
+  <div class="nav-links"><a href="#shop">Shop</a><a href="#collections">Colecciones</a><a href="#story">Historia</a><a href="#contacto">Contacto</a></div>
+  <div class="nav-actions"><button class="icon-btn" onclick="openCart()" aria-label="Carrito">🛍</button></div>
+ </div>
+</nav>
+
+<main>
+<section class="hero">
+ <div class="hero-copy">
+  <div>
+   <div class="eyebrow">THE BEGINNING · 2026</div>
+   <h1>ELVÉ</h1>
+   <p>No es la ropa. Es cómo la llevas.</p>
+   <a class="cta" href="#shop">Descubrir colección</a>
+  </div>
+ </div>
+ <div class="hero-image"><div class="frame"><span>MODA CONTEMPORÁNEA · CUBA</span></div></div>
+</section>
+
+<section class="section" id="collections">
+ <div class="section-head"><div><div class="kicker">01 · COLECCIONES</div><h2>Tu estilo. Tu presencia.</h2></div><div class="muted">WOMAN · MAN</div></div>
+ <div class="collections">
+  <a class="collection woman" href="#shop"><div class="content"><div class="kicker" style="color:#eee">ELVÉ</div><h3>WOMAN</h3><span>Descubrir →</span></div></a>
+  <a class="collection man" href="#shop"><div class="content"><div class="kicker" style="color:#eee">ELVÉ</div><h3>MAN</h3><span>Descubrir →</span></div></a>
+ </div>
+</section>
+
+<section class="section" id="shop">
+ <div class="section-head"><div><div class="kicker">02 · THE BEGINNING</div><h2>Primera selección</h2></div><div class="muted">Colección cápsula</div></div>
+ <div class="products">
+  <article class="card" onclick="addToCart('Élise Dress', 'Consultar precio')"><div class="product-image"></div><div class="product-info"><h4>Élise Dress</h4><span>WOMAN · BLACK</span><div class="price">CONSULTAR PRECIO</div></div></article>
+  <article class="card" onclick="addToCart('Élan Top', 'Consultar precio')"><div class="product-image"></div><div class="product-info"><h4>Élan Top</h4><span>WOMAN · IVORY</span><div class="price">CONSULTAR PRECIO</div></div></article>
+  <article class="card" onclick="addToCart('Émile Shirt', 'Consultar precio')"><div class="product-image"></div><div class="product-info"><h4>Émile Shirt</h4><span>MAN · STONE</span><div class="price">CONSULTAR PRECIO</div></div></article>
+  <article class="card" onclick="addToCart('Évora Set', 'Consultar precio')"><div class="product-image"></div><div class="product-info"><h4>Évora Set</h4><span>WOMAN · CHAMPAGNE</span><div class="price">CONSULTAR PRECIO</div></div></article>
+ </div>
+</section>
+
+<section class="manifesto">
+ <div class="kicker">03 · MANIFIESTO</div>
+ <div class="quote">“No seguimos para encajar. No vestimos para pedir permiso. Vestimos para expresar quién somos.”</div>
+ <div style="color:#aaa;font-size:11px;letter-spacing:2px">ELVÉ · THIS IS JUST THE BEGINNING.</div>
+</section>
+
+<section class="section" id="story">
+ <div class="about-grid">
+  <div><div class="kicker">04 · LA MARCA</div><h2>Todo comienza con una decisión.</h2><p class="muted" style="font-size:16px;margin-top:28px">ELVÉ nace como el comienzo de una nueva etapa: una marca de moda contemporánea, aspiracional y segura. La ropa es el punto de partida; la identidad y la experiencia son el verdadero universo.</p><p class="muted" style="font-size:16px">Pensada para quienes quieren verse bien, sentirse seguros y proyectar una versión más poderosa de sí mismos.</p></div>
+  <div class="about-mark">É</div>
+ </div>
+</section>
+
+<section class="newsletter" id="contacto">
+ <div class="kicker">05 · STAY CLOSE</div>
+ <h2>Forma parte del comienzo.</h2>
+ <p class="muted">Recibe novedades, nuevos drops y lanzamientos de ELVÉ.</p>
+ <form class="form" onsubmit="subscribe(event)"><input id="email" type="email" placeholder="Tu email" required><button>UNIRME</button></form>
+</section>
+</main>
+
+<footer class="footer">
+ <div class="footer-inner">
+  <div><div class="logo">ELVÉ</div><p style="color:#aaa;max-width:300px;line-height:1.7">No es la ropa. Es cómo la llevas.</p></div>
+  <div><b>SHOP</b><p><a href="#collections">Woman</a></p><p><a href="#collections">Man</a></p></div>
+  <div><b>MARCA</b><p><a href="#story">Historia</a></p><p>The Beginning</p></div>
+  <div><b>CONTACTO</b><p>Instagram</p><p>Pedidos online</p></div>
+ </div>
+ <div style="max-width:1280px;margin:45px auto 0"><small>© 2026 ELVÉ. Todos los derechos reservados.</small></div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="cart" id="cart">
+ <div class="cart-head"><h3>Tu selección</h3><button class="icon-btn" onclick="closeCart()">×</button></div>
+ <div id="cartItems"><p class="muted">Aún no has añadido productos.</p></div>
+ <div class="cart-total"><span>Total</span><span id="cartTotal">—</span></div>
+ <button class="cart-checkout" onclick="checkout()">CONTINUAR PEDIDO</button>
+</aside>
+
+<script>
+let cart=[];
+function openCart(){document.getElementById('cart').classList.add('open');document.getElementById('overlay').classList.add('open');}
+function closeCart(){document.getElementById('cart').classList.remove('open');document.getElementById('overlay').classList.remove('open');}
+function addToCart(name,price){cart.push({name,price});renderCart();openCart();}
+function renderCart(){
+ const box=document.getElementById('cartItems');
+ if(!cart.length){box.innerHTML='<p class="muted">Aún no has añadido productos.</p>';return;}
+ box.innerHTML=cart.map((x,i)=>`<div class="cart-item"><span>${x.name}</span><span>${x.price} <button onclick="cart.splice(${i},1);renderCart()" style="border:0;background:none;cursor:pointer">×</button></span></div>`).join('');
+}
+function checkout(){
+ if(!cart.length){alert('Añade un producto primero.');return;}
+ alert('La conexión con el sistema real de pedidos/pago se configura en la siguiente etapa.');
+}
+function subscribe(e){e.preventDefault();alert('¡Bienvenido/a a ELVÉ! En la versión real conectaremos este formulario a tu base de datos o plataforma de email.');}
+</script>
+</body>
+</html>
